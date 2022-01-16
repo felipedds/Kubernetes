@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: run-job
-          image: node:lts-jessie
-          command: ["node", "job.js"]
+          image: nginx:1.21.5
+          command: [nginx-debug, '-g', 'daemon off;']
       restartPolicy: Never
   backoffLimit: 4
