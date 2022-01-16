@@ -1,8 +1,25 @@
-# Start your cluster in minikube
+- Start your cluster in minikube
 minikube start
+minikube start --container-runtime=docker
 minikube start --driver=docker
-minikube start --driver=docker --container-runtime=containerd
+minikube start --container-runtime=containerd
 
-# Access the Kubernetes Dashboard
+- Create a new cluster
+minikube start -p aged --kubernetes-version=v1.23.1
+
+- Delete all of the minikube clusters
+minikube delete --all
+
+- Access the Kubernetes Dashboard
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.4.0/aio/deploy/recommended.yaml
 kubectl proxy
+
+- API Structure Kubernetes
+kubectl api-resources -o wide
+
+- Create a pod nginx
+kubectl run nginx-demo --image=nginx --port=80 dry-run=client -o yaml
+
+- List the API resources that are available
+kubectl api-resources
+
