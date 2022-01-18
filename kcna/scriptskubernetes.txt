@@ -23,3 +23,12 @@ kubectl run nginx-demo --image=nginx --port=80 dry-run=client -o yaml
 - List the API resources that are available
 kubectl api-resources
 
+- Delete Kubernetes
+sudo kubectl delete node --all
+sudo kubeadm reset
+sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*   
+sudo apt-get autoremove  
+sudo rm -rf ~/.kube
+sudo rm -Rf $HOME/.kube
+sudo rm -Rf /etc/kubernetes/admin.conf $HOME/.kube/config
+

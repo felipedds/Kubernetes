@@ -19,5 +19,8 @@ docker container ls -a
 - Run a container from image Ubuntu
 docker container run -it ubuntu /bin/bash
 
+- Run a daemonized container from image Nginx
+docker container run -d nginx
+
 - Run a container from image Mongo
 docker container run -e MONGO_INITDB_ROOT_USERNAME=mongouser -e MONGO_INITDB_ROOT_PASSWORD=mongopwd -d -p "27017:27017" mongo
