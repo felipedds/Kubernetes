@@ -3,6 +3,7 @@ minikube start
 minikube start --container-runtime=docker
 minikube start --driver=docker
 minikube start --container-runtime=containerd
+minikube start --nodes 2 -p felipe-multinode
 
 - Create a new cluster
 minikube start -p aged --kubernetes-version=v1.23.1

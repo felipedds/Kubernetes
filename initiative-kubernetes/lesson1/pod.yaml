@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+spec:
+  containers:
+    - name: web-container
+      image: felipedds/telegram-yfinance:1.0
+      ports:
+        -  containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2
+  labels:
+    app: web
+spec:
+  containers:
+    - name: web-container
+      image: felipedds/telegram-yfinance:1.0
+      ports:
+        -  containerPort: 81

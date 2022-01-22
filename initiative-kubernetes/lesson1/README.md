@@ -15,4 +15,15 @@ docker container rm -f [CONTAINER ID]
 docker container inspect [CONTAINER ID]
 
 docker container exec -it [CONTAINER ID] /bin/bash
+
+docker container logs [CONTAINER ID]
+```
+
+# Create, delete image
+```
+docker image build -t felipe/ubuntu:v1 .
+
+docker image ls
+
+docker image history [IMAGE ID]
 ```
