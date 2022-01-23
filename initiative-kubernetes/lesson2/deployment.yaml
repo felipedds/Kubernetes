@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-container
+  template:
+    metadata:
+      labels:
+        app: web-container
+    spec:
+      containers:
+        - name: web-container
+          image: felipedds/telegram-yfinance:1.0
+          ports:
+            - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-container
+spec:
+  selector:
+    app: web-container
+  ports:
+    - protocol: TCP
+      port: 80
+  type: NodePort
+
+  
+192.168.49.2:30066

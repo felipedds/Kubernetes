@@ -8,6 +8,9 @@ minikube start --nodes 2 -p felipe-multinode
 - Create a new cluster
 minikube start -p aged --kubernetes-version=v1.23.1
 
+- Enable metrics server
+minikube addons enable metrics-server
+
 - Delete all of the minikube clusters
 minikube delete --all
 
@@ -18,11 +21,28 @@ kubectl proxy
 - API Structure Kubernetes
 kubectl api-resources -o wide
 
-- Create a pod nginx
+- Add a label to the pod
+kubectl label pod [NAME_POD] key=value
+
+- Create a pod manifest nginx
 kubectl run nginx-demo --image=nginx --port=80 dry-run=client -o yaml
+kubectl run nginx-demo --image=nginx --port=80 --restart=Never --dry-run=client -o yaml > pod2.yaml
+
+- Info about cluster Kubernetes
+kubectl cluster-info
 
 - List the API resources that are available
 kubectl api-resources
+
+- Scale ReplicaSet
+kubectl scale replicaset [NAME_REPLICASET] --replicas=10
+
+- Execute a rollout in deployment
+kubectl rollout history deployment [NAME_DEPLOYMENT]
+
+- Execute a undo rollout in deployment
+kubectl rollout undo deployment [NAME_DEPLOYMENT]
+
 
 - Delete Kubernetes
 sudo kubectl delete node --all

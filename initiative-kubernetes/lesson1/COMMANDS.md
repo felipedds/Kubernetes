@@ -1,20 +1,29 @@
-# Start a cluster with 2 nodes in the driver
-minikube start --nodes 2 -p felipe-multinode --kubernetes-version=v1.23.1
+## Lesson 1 - Containers e Docker
 
-# Get the list of your nodes
-kubectl get nodes
+# Create, delete container
+```
+docker container run  -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret mongo
 
-# Check the status of your nodes
-minikube status -p felipe-multinode
+docker container ls
 
-# Look at our service, to know what URL to hit
-minikube service list -p felipe-multinode
+docker container rm -f [CONTAINER ID]
+```
 
-# Create other cluster with 2 nodes in the driver
-minikube start --nodes 2 -p felipe2-multinode --kubernetes-version=v1.23.1
+# Troubleshooting
 
-# List all resources in Kubernetes
-kubectl api-resources
+```
+docker container inspect [CONTAINER ID]
 
-# Forward a local port to a port on the Pod
-kubectl port-forward pod/pod1 8080:80
+docker container exec -it [CONTAINER ID] /bin/bash
+
+docker container logs [CONTAINER ID]
+```
+
+# Create, delete image
+```
+docker image build -t felipe/ubuntu:v1 .
+
+docker image ls
+
+docker image history [IMAGE ID]
+```
