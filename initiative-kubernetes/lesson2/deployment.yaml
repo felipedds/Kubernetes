@@ -15,11 +15,26 @@ spec:
       containers:
         - name: web-container
           image: felipedds/telegram-yfinance:1.0
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 2
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -31,6 +46,3 @@ spec:
     - protocol: TCP
       port: 80
   type: NodePort
-
-  
-192.168.49.2:30066

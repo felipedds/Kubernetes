@@ -36,6 +36,8 @@ kubectl api-resources
 
 - Scale ReplicaSet
 kubectl scale replicaset [NAME_REPLICASET] --replicas=10
+kubectl scale --replicas=10 -f [NAME_YAMLFILE]
+kubectl scale --replicas=10 replicaset [NAME_YAMLFILE]
 
 - Execute a rollout in deployment
 kubectl rollout history deployment [NAME_DEPLOYMENT]
