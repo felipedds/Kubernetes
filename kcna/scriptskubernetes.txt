@@ -14,6 +14,9 @@ minikube addons enable metrics-server
 - Delete all of the minikube clusters
 minikube delete --all
 
+- Access application
+minikube service [NAME_SERVICE] --url
+
 - Access the Kubernetes Dashboard
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.4.0/aio/deploy/recommended.yaml
 kubectl proxy
@@ -28,8 +31,14 @@ kubectl label pod [NAME_POD] key=value
 kubectl run nginx-demo --image=nginx --port=80 dry-run=client -o yaml
 kubectl run nginx-demo --image=nginx --port=80 --restart=Never --dry-run=client -o yaml > pod2.yaml
 
+- Execute container[NGINX] in pod
+kubectl exec -it [NAME_POD] -c [NAME_CONTAINER] -- bash
+
 - Info about cluster Kubernetes
 kubectl cluster-info
+
+- Info about objects created by the Kubernetes system
+kubectl get pods -n kube-system
 
 - List the API resources that are available
 kubectl api-resources
@@ -45,6 +54,14 @@ kubectl rollout history deployment [NAME_DEPLOYMENT]
 - Execute a undo rollout in deployment
 kubectl rollout undo deployment [NAME_DEPLOYMENT]
 
+- Verify the rollout status of deployment
+kubectl rollout status [NAME_DEPLOYMENT]
+
+- Encoding a password
+echo [PASSWORD] | base64
+
+- Decocoding a password
+echo "[ENCONDING_PASSWORD]" | base64 --decode
 
 - Delete Kubernetes
 sudo kubectl delete node --all

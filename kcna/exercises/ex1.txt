@@ -1,0 +1,12 @@
+# Create a ConfigMap utilizing the kubectl
+kubectl create configmap db-env --from-literal ip=10.0.0.1 --from-literal db=develop
+
+# Consult if configmap was created
+kubectl get configmap
+
+# Create a Deployment utilizing LivenessProbe
+kubectl create deployment deploy-cm --image=nginx --port=80 --dry-run=client -o yaml > ex1-deployment.yaml
+
+# Exhibit every environment variables in env
+kubectl exec -it deploy-cm-778f5bddc6-xnxml -- env
+

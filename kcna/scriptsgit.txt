@@ -8,3 +8,5 @@ git add .
 git commit -m "to update commands readme"
 git push origin feature
 
+git rm -rf --cached .
+

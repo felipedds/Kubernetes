@@ -1,0 +1,29 @@
+# Create a Pod with two containers
+# Create a volume with name: html-index
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx-html
+  name: nginx-html
+spec:
+  containers:
+  - image: nginx
+    name: nginx-html
+    resources: {}
+    volumeMounts:
+    - mountPath: "/usr/share/nginx/html"
+      name: html-index
+  - image: busybox
+    name: busybox
+    resources: {}
+    command: ["/bin/sh", "-c", "while true; do date >> /html/index.html; sleep 1; done"]
+    volumeMounts:
+    - mountPath: "/html"
+      name: html-index
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+  - name: html-index
+    emptyDir: {}
